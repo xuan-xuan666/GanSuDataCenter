@@ -1,0 +1,25 @@
+{
+  "name": "gansu-tourism-data-center",
+  "version": "1.0.0",
+  "description": "甘肃文旅融合科学数据中心",
+  "main": "src/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0",
+    "@vitejs/plugin-vue2": "^2.0.0"
+  },
+  "keywords": [
+    "vue",
+    "data-center",
+    "tourism"
+  ],
+  "author": "",
+  "license": "ISC"
+}
