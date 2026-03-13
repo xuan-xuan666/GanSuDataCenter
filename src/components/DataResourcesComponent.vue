@@ -1,5 +1,5 @@
 <template>
-    <section class="data-resources">
+    <section id="data-source" class="data-resources">
         <div class="container">
             <div class="section-title">
                 <h2>数据资源</h2>
@@ -19,20 +19,15 @@
     </section>
 </template>
 
-<script>
-export default {
-    name: 'DataResourcesComponent',
-    data() {
-        return {
-            dataResources: [
-                { title: '旅游资源数据', description: '包含全省各类旅游资源的详细信息和统计数据', icon: 'fas fa-map', href: 'javascript:;' },
-                { title: '游客行为数据', description: '分析游客行为特征和旅游偏好数据', icon: 'fas fa-users', href: 'javascript:;' },
-                { title: '环境监测数据', description: '实时环境监测和生态数据', icon: 'fas fa-tree', href: 'javascript:;' },
-                { title: '文化遗产数据', description: '全省文化遗产数字化档案数据', icon: 'fas fa-landmark', href: 'javascript:;' }
-            ]
-        }
-    }
-}
+<script setup>
+const dataResources = [
+    { title: '旅游资源', description: '甘肃地图+地标图标', icon: 'fas fa-map', href: 'javascript:;' },
+    { title: '生态监测 ', description: '动态气象云图图标', icon: 'fas fa-users', href: 'javascript:;' },
+    { title: '非遗资源', description: '剪纸/皮影动态图标', icon: 'fas fa-tree', href: 'javascript:;' },
+    { title: '专题数据', description: '多图层叠加图标', icon: 'fas fa-landmark', href: 'javascript:;' },
+    { title: '文创数据', description: '三维文物旋转图标', icon: 'fas fa-landmark', href: 'javascript:;' },
+    { title: '特色数据', description: '飞天舞蹈剪影图标', icon: 'fas fa-landmark', href: 'javascript:;' },
+]
 </script>
 
 <style scoped>
@@ -43,22 +38,22 @@ export default {
 
 .resources-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
 .resource-card {
     background: #fff;
     padding: 30px 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
     transition: all 0.3s;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .resource-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
 .resource-icon {

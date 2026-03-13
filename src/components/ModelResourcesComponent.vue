@@ -18,19 +18,12 @@
     </section>
 </template>
 
-<script>
-export default {
-    name: 'ModelResourcesComponent',
-    data() {
-        return {
-            modelResources: [
-                { title: '旅游流量预测模型', description: '基于历史数据的旅游流量预测分析模型', href: 'javascript:;' },
-                { title: '游客偏好分析模型', description: '游客旅游偏好和行为模式分析模型', href: 'javascript:;' },
-                { title: '资源评价模型', description: '旅游资源价值评估和分类模型', href: 'javascript:;' }
-            ]
-        }
-    }
-}
+<script setup>
+const modelResources = [
+    { title: '旅游流量预测模型', description: '基于历史数据的旅游流量预测分析模型', href: 'javascript:;' },
+    { title: '游客偏好分析模型', description: '游客旅游偏好和行为模式分析模型', href: 'javascript:;' },
+    { title: '资源评价模型', description: '旅游资源价值评估和分类模型', href: 'javascript:;' }
+]
 </script>
 
 <style scoped>

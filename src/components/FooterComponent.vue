@@ -13,15 +13,15 @@
                 <div class="footer-column">
                     <h4>数据资源</h4>
                     <ul>
-                        <li><a href="javascript:;">数据检索</a></li>
-                        <li><a href="javascript:;">数据下载</a></li>
+                        <li><a href="javascript:;">数据申请入口</a></li>
+                        <li><a href="javascript:;">API开发文档</a></li>
                         <li><a href="javascript:;">数据服务</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h4>专题数据</h4>
                     <ul>
-                        <li><a href="javascript:;">文旅资源</a></li>
+                        <li><a href="https://traveldata.yougansu.com/visualC/#/">如意甘肃文旅大数据平台</a></li>
                         <li><a href="javascript:;">生态保护</a></li>
                         <li><a href="javascript:;">气候变化</a></li>
                     </ul>
@@ -43,10 +43,7 @@
     </footer>
 </template>
 
-<script>
-export default {
-    name: 'FooterComponent'
-}
+<script setup>
 </script>
 
 <style scoped>
@@ -61,6 +58,7 @@ export default {
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     margin-bottom: 40px;
+    justify-items: center;
 }
 
 .footer-column h4 {

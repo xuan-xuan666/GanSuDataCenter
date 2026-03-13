@@ -27,53 +27,50 @@
     </section>
 </template>
 
-<script>
-export default {
-    name: 'CarouselComponent',
-    data() {
-        return {
-            currentSlide: 0,
-            slides: [
-                {
-                    title: '甘肃文旅资源大数据平台',
-                    description: '整合全省文旅资源，提供全面的数据支持和服务',
-                    image: 'https://picsum.photos/1200/500?random=1'
-                },
-                {
-                    title: '生态旅游数据分析中心',
-                    description: '实时监测生态旅游数据，助力可持续发展',
-                    image: 'https://picsum.photos/1200/500?random=2'
-                },
-                {
-                    title: '智慧文旅融合创新平台',
-                    description: '推动文旅融合创新发展，打造智慧旅游新体验',
-                    image: 'https://picsum.photos/1200/500?random=3'
-                },
-                {
-                    title: '文化遗产数字化保护工程',
-                    description: '运用大数据技术保护和传承文化遗产',
-                    image: 'https://picsum.photos/1200/500?random=4'
-                }
-            ]
-        }
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const currentSlide = ref(0)
+const slides = [
+    {
+        title: '甘肃文旅资源大数据平台',
+        description: '整合全省文旅资源，提供全面的数据支持和服务',
+        image: 'https://picsum.photos/1200/500?random=1'
     },
-    mounted() {
-        this.startCarousel()
+    {
+        title: '生态旅游数据分析中心',
+        description: '实时监测生态旅游数据，助力可持续发展',
+        image: 'https://picsum.photos/1200/500?random=2'
     },
-    methods: {
-        nextSlide() {
-            this.currentSlide = (this.currentSlide + 1) % this.slides.length
-        },
-        prevSlide() {
-            this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length
-        },
-        startCarousel() {
-            setInterval(() => {
-                this.nextSlide()
-            }, 5000)
-        }
+    {
+        title: '智慧文旅融合创新平台',
+        description: '推动文旅融合创新发展，打造智慧旅游新体验',
+        image: 'https://picsum.photos/1200/500?random=3'
+    },
+    {
+        title: '文化遗产数字化保护工程',
+        description: '运用大数据技术保护和传承文化遗产',
+        image: 'https://picsum.photos/1200/500?random=4'
     }
+]
+
+const nextSlide = () => {
+    currentSlide.value = (currentSlide.value + 1) % slides.length
 }
+
+const prevSlide = () => {
+    currentSlide.value = (currentSlide.value - 1 + slides.length) % slides.length
+}
+
+const startCarousel = () => {
+    setInterval(() => {
+        nextSlide()
+    }, 5000)
+}
+
+onMounted(() => {
+    startCarousel()
+})
 </script>
 
 <style scoped>

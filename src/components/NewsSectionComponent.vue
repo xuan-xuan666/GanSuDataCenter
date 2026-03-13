@@ -15,20 +15,13 @@
     </section>
 </template>
 
-<script>
-export default {
-    name: 'NewsSectionComponent',
-    data() {
-        return {
-            newsList: [
-                { date: '2026-03-01', title: '甘肃文旅融合科学数据中心正式上线运行', href: 'javascript:;' },
-                { date: '2026-02-28', title: '全省文旅大数据平台建设推进会议召开', href: 'javascript:;' },
-                { date: '2026-02-25', title: '文旅融合科技创新项目获得省级表彰', href: 'javascript:;' },
-                { date: '2026-02-20', title: '数据中心发布2026年第一季度旅游趋势报告', href: 'javascript:;' }
-            ]
-        }
-    }
-}
+<script setup>
+const newsList = [
+    { date: '2026-03-01', title: '甘肃文旅融合科学数据中心正式上线运行', href: 'javascript:;' },
+    { date: '2026-02-28', title: '全省文旅大数据平台建设推进会议召开', href: 'javascript:;' },
+    { date: '2026-02-25', title: '文旅融合科技创新项目获得省级表彰', href: 'javascript:;' },
+    { date: '2026-02-20', title: '数据中心发布2026年第一季度旅游趋势报告', href: 'javascript:;' }
+]
 </script>
 
 <style scoped>

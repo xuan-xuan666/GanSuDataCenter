@@ -6,7 +6,7 @@
                 <a href="javascript:;" class="more-link">更多 &gt;</a>
             </div>
             <div class="popularization-grid">
-                <div class="pop-item" v-for="(item, index) in 科普Items" :key="index">
+                <div class="pop-item" v-for="(item, index) in SPItems" :key="index">
                     <img :src="item.image" :alt="item.title">
                     <div class="pop-content">
                         <h4>{{ item.title }}</h4>
@@ -18,20 +18,13 @@
     </section>
 </template>
 
-<script>
-export default {
-    name: 'SciencePopularizationComponent',
-    data() {
-        return {
-           科普Items: [
-                { title: '什么是科学数据中心', description: '了解科学数据中心的基本概念和功能', image: 'https://picsum.photos/280/200?random=8' },
-                { title: '文旅融合的意义', description: '文旅融合对经济社会发展的重要作用', image: 'https://picsum.photos/280/200?random=9' },
-                { title: '大数据在文旅中的应用', description: '大数据技术如何赋能文旅产业发展', image: 'https://picsum.photos/280/200?random=10' },
-                { title: '智慧旅游指南', description: '如何利用数据中心获取旅游信息', image: 'https://picsum.photos/280/200?random=11' }
-            ]
-        }
-    }
-}
+<script setup>
+const SPItems = [
+    { title: '什么是科学数据中心', description: '了解科学数据中心的基本概念和功能', image: 'https://picsum.photos/280/200?random=8' },
+    { title: '文旅融合的意义', description: '文旅融合对经济社会发展的重要作用', image: 'https://picsum.photos/280/200?random=9' },
+    { title: '大数据在文旅中的应用', description: '大数据技术如何赋能文旅产业发展', image: 'https://picsum.photos/280/200?random=10' },
+    { title: '智慧旅游指南', description: '如何利用数据中心获取旅游信息', image: 'https://picsum.photos/280/200?random=11' }
+]
 </script>
 
 <style scoped>

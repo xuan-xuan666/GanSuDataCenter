@@ -13,7 +13,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import HeaderComponent from './components/HeaderComponent.vue'
 import CarouselComponent from './components/CarouselComponent.vue'
 import DataOverviewComponent from './components/DataOverviewComponent.vue'
@@ -24,22 +24,6 @@ import ModelResourcesComponent from './components/ModelResourcesComponent.vue'
 import SciencePopularizationComponent from './components/SciencePopularizationComponent.vue'
 import PlatformIntroComponent from './components/PlatformIntroComponent.vue'
 import FooterComponent from './components/FooterComponent.vue'
-
-export default {
-    name: 'App',
-    components: {
-        HeaderComponent,
-        CarouselComponent,
-        DataOverviewComponent,
-        NewsSectionComponent,
-        DataResourcesComponent,
-        SpecialTopicComponent,
-        ModelResourcesComponent,
-        SciencePopularizationComponent,
-        PlatformIntroComponent,
-        FooterComponent
-    }
-}
 </script>
 
 <style>

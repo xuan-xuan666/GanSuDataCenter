@@ -19,21 +19,14 @@
     </section>
 </template>
 
-<script>
-export default {
-    name: 'PlatformIntroComponent',
-    data() {
-        return {
-            platformIntro: '甘肃文旅融合科学数据中心是甘肃省重点建设的科学数据平台，致力于整合全省文旅资源，提供全面的数据服务和分析支持。中心依托先进的大数据技术，为政府决策、科学研究和公众服务提供有力支撑。',
-            platformStats: [
-                { number: '1000+', label: '数据资源' },
-                { number: '50+', label: '专题项目' },
-                { number: '100万+', label: '访问量' },
-                { number: '20+', label: '合作单位' }
-            ]
-        }
-    }
-}
+<script setup>
+const platformIntro = '甘肃文旅融合科学数据中心是甘肃省重点建设的科学数据平台，致力于整合全省文旅资源，提供全面的数据服务和分析支持。中心依托先进的大数据技术，为政府决策、科学研究和公众服务提供有力支撑。'
+const platformStats = [
+    { number: '1000+', label: '数据资源' },
+    { number: '50+', label: '专题项目' },
+    { number: '100万+', label: '访问量' },
+    { number: '20+', label: '合作单位' }
+]
 </script>
 
 <style scoped>

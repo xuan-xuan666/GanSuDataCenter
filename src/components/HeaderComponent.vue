@@ -17,7 +17,7 @@
             <div class="container">
                 <ul>
                     <li v-for="item in navItems" :key="item.path">
-                        <a :href="item.href" :class="{ active: currentItem === item.path }">{{ item.name }}</a>
+                        <a :href="item.href" :class="{ active: currentItem === item.path }" @click="handleNavClick(item)">{{ item.name }}</a>
                     </li>
                 </ul>
             </div>
@@ -25,21 +25,48 @@
     </header>
 </template>
 
-<script>
-export default {
-    name: 'HeaderComponent',
-    data() {
-        return {
-            currentItem: '首页',
-            navItems: [
-                { name: '首页', path: 'home', href: 'javascript:;' },
-                { name: '综合新闻', path: 'news', href: 'javascript:;' },
-                { name: '数据资源', path: 'data', href: 'javascript:;' },
-                { name: '专题数据', path: 'topic', href: 'javascript:;' },
-                { name: '模型资源', path: 'model', href: 'javascript:;' },
-                { name: '科普专栏', path: 'popularization', href: 'javascript:;' },
-                { name: '平台介绍', path: 'intro', href: 'javascript:;' }
-            ]
+<script setup>
+import { ref } from 'vue'
+
+const currentItem = ref('首页')
+const navItems = [
+    { name: '首页', path: 'home', href: 'javascript:;' },
+    { name: '综合新闻', path: 'news', href: 'javascript:;' },
+    { name: '数据资源', path: 'data', href: '#data-source' },
+    { name: '专题数据', path: 'topic', href: 'javascript:;' },
+    { name: '模型资源', path: 'model', href: 'javascript:;' },
+    { name: '科普专栏', path: 'popularization', href: 'javascript:;' },
+    { name: '平台介绍', path: 'intro', href: 'javascript:;' }
+]
+
+const handleNavClick = (item) => {
+    if (item.href && item.href.startsWith('#')) {
+        const targetElement = document.querySelector(item.href)
+        if (targetElement) {
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset
+            const startPosition = window.pageYOffset
+            const distance = targetPosition - startPosition
+            const duration = 800
+            let startTime = null
+
+            const easeInOutQuad = (t) => {
+                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+            }
+
+            const scroll = (currentTime) => {
+                if (!startTime) startTime = currentTime
+                const elapsed = currentTime - startTime
+                const progress = Math.min(elapsed / duration, 1)
+                const ease = easeInOutQuad(progress)
+
+                window.scrollTo(0, startPosition + distance * ease)
+
+                if (progress < 1) {
+                    requestAnimationFrame(scroll)
+                }
+            }
+
+            requestAnimationFrame(scroll)
         }
     }
 }
@@ -65,6 +92,7 @@ export default {
 .logo {
     display: flex;
     align-items: center;
+    margin-left: 20px;
     color: #fff;
 }
 

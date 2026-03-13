@@ -18,19 +18,12 @@
     </section>
 </template>
 
-<script>
-export default {
-    name: 'SpecialTopicComponent',
-    data() {
-        return {
-            specialTopics: [
-                { title: '黄河文化专题', description: '黄河流域文化遗产和旅游资源整合分析', image: 'https://picsum.photos/300/200?random=5' },
-                { title: '丝绸之路专题', description: '古丝绸之路甘肃段文旅资源研究', image: 'https://picsum.photos/300/200?random=6' },
-                { title: '生态旅游专题', description: '甘肃生态旅游资源开发与保护研究', image: 'https://picsum.photos/300/200?random=7' }
-            ]
-        }
-    }
-}
+<script setup>
+const specialTopics = [
+    { title: '黄河文化专题', description: '黄河流域文化遗产和旅游资源整合分析', image: 'https://picsum.photos/300/200?random=5' },
+    { title: '丝绸之路专题', description: '古丝绸之路甘肃段文旅资源研究', image: 'https://picsum.photos/300/200?random=6' },
+    { title: '生态旅游专题', description: '甘肃生态旅游资源开发与保护研究', image: 'https://picsum.photos/300/200?random=7' }
+]
 </script>
 
 <style scoped>
