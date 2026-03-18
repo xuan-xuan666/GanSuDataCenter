@@ -3,7 +3,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>综合新闻</h2>
-                <a href="javascript:;" class="more-link">更多 &gt;</a>
+                <a href="/news" class="more-link">更多 &gt;</a>
             </div>
             <div class="news-list">
                 <div class="news-item" v-for="(news, index) in newsList" :key="index">
@@ -26,7 +26,7 @@ const newsList = [
 
 <style scoped>
 .content-section {
-    padding: 60px 0;
+    padding: 60px 60px;
     background: #fff;
 }
 

@@ -1,15 +1,17 @@
 <template>
-    <div class="news-page">
-        <main class="news-content">
+    <div class="standard-grid-page news-page">
+        <!-- 筛选区域 -->
+        <section class="filter-section">
             <div class="container">
-                <div class="page-header">
-                    <h1>综合新闻</h1>
-                    <p class="page-description">了解甘肃文旅融合科学数据中心最新动态和行业资讯</p>
-                </div>
-                
                 <NewsFilterComponent @filter-change="handleFilterChange" />
-                
-                <div class="news-grid">
+            </div>
+        </section>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <div class="container">
+                <!-- 数据网格 -->
+                <div class="standard-grid news-grid">
                     <NewsCardComponent 
                         v-for="news in displayedNews" 
                         :key="news.id" 
@@ -17,12 +19,15 @@
                     />
                 </div>
                 
-                <PaginationComponent 
-                    :current-page="currentPage"
-                    :total-pages="totalPages"
-                    :total-items="filteredNews.length"
-                    @page-change="handlePageChange"
-                />
+                <!-- 分页组件 -->
+                <div class="pagination-wrapper">
+                    <PaginationComponent 
+                        :current-page="currentPage"
+                        :total-pages="totalPages"
+                        :total-items="filteredNews.length"
+                        @page-change="handlePageChange"
+                    />
+                </div>
             </div>
         </main>
     </div>
@@ -61,8 +66,8 @@ const allNews = ref([
     },
     {
         id: 4,
-        title: '数据中心发布2026年第一季度旅游趋势报告',
-        summary: '报告显示，甘肃省第一季度旅游接待量同比增长15%，其中敦煌莫高窟、张掖丹霞等热门景区游客量创历史新高。',
+        title: '数据中心发布 2026 年第一季度旅游趋势报告',
+        summary: '报告显示，甘肃省第一季度旅游接待量同比增长 15%，其中敦煌莫高窟、张掖丹霞等热门景区游客量创历史新高。',
         date: '2026-03-08',
         category: 'industry',
         image: 'https://picsum.photos/400/300?random=4'
@@ -70,7 +75,7 @@ const allNews = ref([
     {
         id: 5,
         title: '《甘肃省文旅融合发展条例》正式实施',
-        summary: '《甘肃省文旅融合发展条例》于3月1日起正式实施，为全省文旅融合发展提供了法律保障和制度支撑。',
+        summary: '《甘肃省文旅融合发展条例》于 3 月 1 日起正式实施，为全省文旅融合发展提供了法律保障和制度支撑。',
         date: '2026-03-05',
         category: 'policy',
         image: 'https://picsum.photos/400/300?random=5'
@@ -78,7 +83,7 @@ const allNews = ref([
     {
         id: 6,
         title: '敦煌莫高窟数字化保护项目取得新进展',
-        summary: '敦煌研究院与甘肃文旅融合科学数据中心合作，完成莫高窟第285窟高精度数字化采集，为文化遗产保护提供技术支持。',
+        summary: '敦煌研究院与甘肃文旅融合科学数据中心合作，完成莫高窟第 285 窟高精度数字化采集，为文化遗产保护提供技术支持。',
         date: '2026-03-02',
         category: 'platform',
         image: 'https://picsum.photos/400/300?random=6'
@@ -86,7 +91,7 @@ const allNews = ref([
     {
         id: 7,
         title: '甘肃省智慧旅游平台用户突破百万',
-        summary: '甘肃省智慧旅游平台累计注册用户突破100万，平台提供的智能导览、在线预订等服务深受游客欢迎。',
+        summary: '甘肃省智慧旅游平台累计注册用户突破 100 万，平台提供的智能导览、在线预订等服务深受游客欢迎。',
         date: '2026-02-28',
         category: 'industry',
         image: 'https://picsum.photos/400/300?random=7'
@@ -94,7 +99,7 @@ const allNews = ref([
     {
         id: 8,
         title: '文旅融合创新大赛报名启动',
-        summary: '2026年甘肃文旅融合创新大赛正式启动，面向全国征集文旅融合创新项目和创意方案，推动文旅产业高质量发展。',
+        summary: '2026 年甘肃文旅融合创新大赛正式启动，面向全国征集文旅融合创新项目和创意方案，推动文旅产业高质量发展。',
         date: '2026-02-25',
         category: 'activity',
         image: 'https://picsum.photos/400/300?random=8'
@@ -110,7 +115,7 @@ const allNews = ref([
     {
         id: 10,
         title: '甘肃省文旅产业投资洽谈会圆满举行',
-        summary: '甘肃省文旅产业投资洽谈会在兰州举行，现场签约项目28个，总投资额达156亿元，为文旅产业发展注入新动力。',
+        summary: '甘肃省文旅产业投资洽谈会在兰州举行，现场签约项目 28 个，总投资额达 156 亿元，为文旅产业发展注入新动力。',
         date: '2026-02-20',
         category: 'industry',
         image: 'https://picsum.photos/400/300?random=10'
@@ -164,12 +169,12 @@ const filteredNews = computed(() => {
         })
     }
     
-    if (currentFilter.value.keyword && currentFilter.value.keyword.trim() !== '') {
-        const keyword = currentFilter.value.keyword.toLowerCase().trim()
-        result = result.filter(news => {
-            return news.title.toLowerCase().includes(keyword) || 
-                   news.summary.toLowerCase().includes(keyword)
-        })
+    if (currentFilter.value.keyword) {
+        const keyword = currentFilter.value.keyword.toLowerCase()
+        result = result.filter(news => 
+            news.title.toLowerCase().includes(keyword) ||
+            news.summary.toLowerCase().includes(keyword)
+        )
     }
     
     return result
@@ -184,7 +189,7 @@ const displayedNews = computed(() => {
 })
 
 const handleFilterChange = (filter) => {
-    currentFilter.value = filter
+    currentFilter.value = { ...currentFilter.value, ...filter }
     currentPage.value = 1
 }
 
@@ -195,13 +200,24 @@ const handlePageChange = (page) => {
 </script>
 
 <style scoped>
-.news-page {
+/* 使用标准网格页面基础样式 */
+.standard-grid-page {
     min-height: 100vh;
     background: #f5f5f5;
 }
 
-.news-content {
+/* 筛选区域 */
+.filter-section {
+    background: #fff;
+    padding: 20px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+/* 主内容区域 */
+.main-content {
     padding: 40px 0;
+    min-height: 600px;
 }
 
 .container {
@@ -210,48 +226,35 @@ const handlePageChange = (page) => {
     padding: 0 15px;
 }
 
-.page-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.page-header h1 {
-    font-size: 32px;
-    color: #1a237e;
-    font-weight: 600;
-    margin: 0 0 10px 0;
-}
-
-.page-description {
-    font-size: 16px;
-    color: #666;
-    margin: 0;
-}
-
-.news-grid {
+/* 标准网格布局 */
+.standard-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     margin-bottom: 30px;
 }
 
+/* 分页包装器 */
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* 响应式设计 */
 @media (max-width: 1024px) {
-    .news-grid {
+    .standard-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 640px) {
-    .news-grid {
+    .standard-grid {
         grid-template-columns: 1fr;
     }
     
-    .page-header h1 {
-        font-size: 24px;
-    }
-    
-    .page-description {
-        font-size: 14px;
+    .main-content {
+        padding: 20px 0;
     }
 }
 </style>

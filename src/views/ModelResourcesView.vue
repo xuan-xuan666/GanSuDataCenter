@@ -1,17 +1,7 @@
 <template>
-    <div class="model-resources-page">
-        <!-- 页面标题区域 -->
-        <section class="page-header">
-            <div class="container">
-                <div class="header-content">
-                    <h1>模型资源</h1>
-                    <p>提供文旅融合领域的分析模型、评价方法和决策支持工具，支持文化遗产保护、旅游资源开发、旅游经济分析等方面的研究与应用</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 搜索和筛选区域 -->
-        <section class="search-section">
+    <div class="standard-grid-page model-resources-page">
+        <!-- 筛选区域 -->
+        <section class="filter-section">
             <div class="container">
                 <div class="search-box">
                     <input
@@ -39,9 +29,10 @@
             </div>
         </section>
 
-        <!-- 模型列表区域 -->
-        <section class="models-section">
+        <!-- 主内容区域 -->
+        <main class="main-content">
             <div class="container">
+                <!-- 结果统计和视图切换 -->
                 <div class="section-header">
                     <h2>
                         {{ selectedCategory === 'all' ? '全部模型' : getCategoryName(selectedCategory) }}
@@ -64,7 +55,7 @@
                 </div>
 
                 <!-- 网格视图 -->
-                <div v-if="viewMode === 'grid'" class="models-grid">
+                <div v-if="viewMode === 'grid'" class="standard-grid models-grid">
                     <ModelCard
                         v-for="model in paginatedModels"
                         :key="model.id"
@@ -110,8 +101,8 @@
                     <p>暂无相关模型</p>
                 </div>
 
-                <!-- 分页 -->
-                <div v-if="filteredModels.length > pageSize" class="pagination">
+                <!-- 分页组件 -->
+                <div v-if="filteredModels.length > pageSize" class="pagination-wrapper">
                     <button
                         :disabled="currentPage === 1"
                         class="page-btn"
@@ -188,7 +179,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </main>
     </div>
 </template>
 
@@ -224,7 +215,7 @@ const handleDownloadFromDialog = () => {
     closeDialog()
 }
 
-// 分类数据 - 文旅融合数据分类
+// 分类数据
 const categories = ref([
     { id: 'all', name: '全部', count: 12 },
     { id: 'heritage', name: '文化遗产', count: 3 },
@@ -235,7 +226,7 @@ const categories = ref([
     { id: 'folklore', name: '民俗文化', count: 1 }
 ])
 
-// 模型数据 - 甘肃省文旅融合科学数据中心
+// 模型数据
 const models = ref([
     {
         id: 1,
@@ -251,7 +242,7 @@ const models = ref([
     {
         id: 2,
         title: '旅游流量预测模型',
-        description: '基于时间序列分析和机器学习的旅游流量预测模型，整合历史游客数据、节假日效应、气候因素、促销活动等多源数据，采用LSTM神经网络进行流量预测。支持日度、周度、月度多时间粒度预测，为景区管理、资源配置提供决策支持。',
+        description: '基于时间序列分析和机器学习的旅游流量预测模型，整合历史游客数据、节假日效应、气候因素、促销活动等多源数据，采用 LSTM 神经网络进行流量预测。支持日度、周度、月度多时间粒度预测，为景区管理、资源配置提供决策支持。',
         category: 'tourism',
         author: '旅游大数据实验室',
         downloads: 3420,
@@ -262,7 +253,7 @@ const models = ref([
     {
         id: 3,
         title: '敦煌莫高窟游客承载量评估模型',
-        description: '针对敦煌莫高窟特殊文物保护需求开发的游客承载量评估模型，综合考虑洞窟空间容量、微环境影响、文物安全等因素，建立多层次承载量评估体系。通过动态监测游客活动对洞窟温湿度、CO2浓度、微生物的影响，确定最优游客承载量，实现文物保护与旅游发展的平衡。',
+        description: '针对敦煌莫高窟特殊文物保护需求开发的游客承载量评估模型，综合考虑洞窟空间容量、微环境影响、文物安全等因素，建立多层次承载量评估体系。通过动态监测游客活动对洞窟温湿度、CO2 浓度、微生物的影响，确定最优游客承载量，实现文物保护与旅游发展的平衡。',
         category: 'protection',
         author: '敦煌研究院',
         downloads: 4180,
@@ -284,7 +275,7 @@ const models = ref([
     {
         id: 5,
         title: '旅游经济贡献度分析模型',
-        description: '分析旅游业对区域经济贡献度的计量经济模型，基于投入产出表和旅游卫星账户（TSA）方法，测算旅游业的直接贡献、间接贡献和诱导贡献。评估旅游业对GDP、就业、税收的拉动作用，为旅游产业政策制定、投资决策提供量化支撑。',
+        description: '分析旅游业对区域经济贡献度的计量经济模型，基于投入产出表和旅游卫星账户（TSA）方法，测算旅游业的直接贡献、间接贡献和诱导贡献。评估旅游业对 GDP、就业、税收的拉动作用，为旅游产业政策制定、投资决策提供量化支撑。',
         category: 'economy',
         author: '旅游经济研究所',
         downloads: 2340,
@@ -301,12 +292,12 @@ const models = ref([
         downloads: 3150,
         date: '2024-03-03',
         thumbnail: 'https://images.unsplash.com/photo-1599930113854-d6d7fd521f10?w=800&h=500&fit=crop',
-        tags: ['非遗保护', '数字化', 'VR技术', '文化传承']
+        tags: ['非遗保护', '数字化', 'VR 技术', '文化传承']
     },
     {
         id: 7,
         title: '游客行为分析模型',
-        description: '基于大数据和位置服务的游客行为分析模型，整合手机信令、GPS轨迹、景区闸机、消费记录等多源数据，分析游客的来源地分布、移动轨迹、停留时长、消费偏好等行为特征。识别游客群体画像和行为模式，为精准营销、产品优化、服务提升提供数据支撑。',
+        description: '基于大数据和位置服务的游客行为分析模型，整合手机信令、GPS 轨迹、景区闸机、消费记录等多源数据，分析游客的来源地分布、移动轨迹、停留时长、消费偏好等行为特征。识别游客群体画像和行为模式，为精准营销、产品优化、服务提升提供数据支撑。',
         category: 'tourism',
         author: '旅游行为分析实验室',
         downloads: 3890,
@@ -317,7 +308,7 @@ const models = ref([
     {
         id: 8,
         title: '文旅融合发展评价模型',
-        description: '评价文化与旅游产业融合发展水平的综合模型，从资源融合、产品融合、市场融合、产业融合四个维度构建评价指标体系。采用熵值法和TOPSIS方法进行综合评价，量化文旅融合发展的协调度和融合度，为政策制定和产业规划提供评估工具。',
+        description: '评价文化与旅游产业融合发展水平的综合模型，从资源融合、产品融合、市场融合、产业融合四个维度构建评价指标体系。采用熵值法和 TOPSIS 方法进行综合评价，量化文旅融合发展的协调度和融合度，为政策制定和产业规划提供评估工具。',
         category: 'economy',
         author: '文旅融合研究中心',
         downloads: 2760,
@@ -328,7 +319,7 @@ const models = ref([
     {
         id: 9,
         title: '长城文化遗产保护规划模型',
-        description: '针对甘肃境内长城遗址（包括明长城、汉长城等）的保护规划模型，整合遥感监测、GIS空间分析、风险评估等技术，评估长城遗址的保存状况、病害特征、环境风险。建立分级分类保护体系，制定科学合理的保护措施和展示利用方案。',
+        description: '针对甘肃境内长城遗址（包括明长城、汉长城等）的保护规划模型，整合遥感监测、GIS 空间分析、风险评估等技术，评估长城遗址的保存状况、病害特征、环境风险。建立分级分类保护体系，制定科学合理的保护措施和展示利用方案。',
         category: 'heritage',
         author: '长城保护研究中心',
         downloads: 1980,
@@ -428,48 +419,15 @@ watch([selectedCategory, searchKeyword], () => {
 })
 </script>
 
-<script>
-export default {
-    name: 'ModelResourcesView'
-}
-</script>
-
 <style scoped>
-.model-resources-page {
+/* 使用标准网格页面基础样式 */
+.standard-grid-page {
     min-height: 100vh;
     background: #f5f5f5;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-/* 页面标题区域 */
-.page-header {
-    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
-    padding: 60px 0 40px;
-    color: #fff;
-    text-align: center;
-}
-
-.header-content h1 {
-    font-size: 36px;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.header-content p {
-    font-size: 16px;
-    opacity: 0.9;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
-
-/* 搜索区域 */
-.search-section {
+/* 筛选区域 */
+.filter-section {
     background: #fff;
     padding: 30px 0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -493,126 +451,195 @@ export default {
 
 .search-box input:focus {
     outline: none;
-    border-color: #005da6;
+    border-color: #1a237e;
 }
 
 .search-btn {
-    padding: 12px 30px;
-    background: linear-gradient(135deg, #005da6 0%, #0079b8 100%);
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
-    font-weight: 500;
     transition: all 0.3s;
 }
 
 .search-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,93,166,0.3);
+    background: linear-gradient(135deg, #283593 0%, #1a237e 100%);
 }
 
 .filter-tags {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .filter-label {
-    font-weight: 500;
+    font-size: 14px;
     color: #666;
-    margin-right: 10px;
+    font-weight: 500;
 }
 
 .tag-btn {
     padding: 8px 16px;
+    background: #f5f5f5;
     border: 1px solid #e0e0e0;
-    background: #fff;
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
     transition: all 0.3s;
-    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .tag-btn:hover {
-    border-color: #005da6;
-    color: #005da6;
+    background: #e0e0e0;
 }
 
 .tag-btn.active {
-    background: linear-gradient(135deg, #005da6 0%, #0079b8 100%);
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
     color: #fff;
-    border-color: transparent;
+    border-color: #1a237e;
 }
 
-.tag-btn .count {
+.count {
     font-size: 12px;
     opacity: 0.8;
 }
 
-/* 模型列表区域 */
-.models-section {
-    padding: 30px 0 60px;
+/* 主内容区域 */
+.main-content {
+    padding: 40px 0;
+    min-height: 600px;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* 区块标题 */
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
 }
 
 .section-header h2 {
     font-size: 24px;
     color: #1a237e;
+    margin: 0;
     font-weight: 600;
 }
 
 .result-count {
     font-size: 14px;
     color: #666;
-    font-weight: 400;
+    font-weight: normal;
     margin-left: 10px;
 }
 
 .view-toggle {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .view-btn {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border: 1px solid #e0e0e0;
     background: #fff;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
     transition: all 0.3s;
 }
 
 .view-btn:hover {
-    border-color: #005da6;
-    color: #005da6;
+    background: #f5f5f5;
 }
 
 .view-btn.active {
-    background: linear-gradient(135deg, #005da6 0%, #0079b8 100%);
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
     color: #fff;
-    border-color: transparent;
+    border-color: #1a237e;
 }
 
-/* 网格视图 */
-.models-grid {
+/* 标准网格布局 */
+.standard-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+/* 分页包装器 */
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.page-btn {
+    padding: 8px 16px;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.page-btn:not(:disabled):hover {
+    background: #1a237e;
+    color: #fff;
+    border-color: #1a237e;
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-info {
+    padding: 8px 16px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* 空状态 */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.empty-state i {
+    font-size: 48px;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.empty-state p {
+    color: #999;
+    font-size: 16px;
+    margin: 0;
 }
 
 /* 列表视图 */
@@ -620,29 +647,31 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    margin-bottom: 30px;
 }
 
 .model-list-item {
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
     display: flex;
     gap: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    transition: all 0.3s;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .model-list-item:hover {
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .model-thumbnail {
-    width: 200px;
-    height: 125px;
+    width: 240px;
+    height: 160px;
+    position: relative;
     border-radius: 8px;
     overflow: hidden;
-    position: relative;
     flex-shrink: 0;
 }
 
@@ -656,10 +685,10 @@ export default {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: rgba(0,93,166,0.9);
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
     color: #fff;
     padding: 4px 12px;
-    border-radius: 4px;
+    border-radius: 12px;
     font-size: 12px;
 }
 
@@ -672,7 +701,7 @@ export default {
 .model-info h3 {
     font-size: 18px;
     color: #1a237e;
-    margin-bottom: 10px;
+    margin: 0 0 10px 0;
     font-weight: 600;
 }
 
@@ -680,12 +709,8 @@ export default {
     font-size: 14px;
     color: #666;
     line-height: 1.6;
-    margin-bottom: 15px;
+    margin: 0 0 15px 0;
     flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 .model-meta {
@@ -693,201 +718,73 @@ export default {
     gap: 20px;
     font-size: 13px;
     color: #999;
+    margin-bottom: 15px;
 }
 
-.model-meta span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+.model-meta i {
+    margin-right: 4px;
 }
 
 .model-actions {
     display: flex;
-    flex-direction: column;
     gap: 10px;
-    justify-content: center;
 }
 
 .btn-primary,
 .btn-secondary {
-    padding: 10px 20px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     transition: all 0.3s;
-    white-space: nowrap;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #005da6 0%, #0079b8 100%);
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
     color: #fff;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,93,166,0.3);
+    background: linear-gradient(135deg, #283593 0%, #1a237e 100%);
 }
 
 .btn-secondary {
     background: #f5f5f5;
-    color: #666;
+    color: #333;
 }
 
 .btn-secondary:hover {
     background: #e0e0e0;
-    color: #333;
 }
 
-/* 空状态 */
-.empty-state {
-    text-align: center;
-    padding: 80px 0;
-    color: #999;
-}
-
-.empty-state i {
-    font-size: 64px;
-    margin-bottom: 20px;
-    color: #e0e0e0;
-}
-
-.empty-state p {
-    font-size: 16px;
-}
-
-/* 分页 */
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-top: 40px;
-}
-
-.page-btn {
-    padding: 10px 20px;
-    border: 1px solid #e0e0e0;
-    background: #fff;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    color: #666;
-    transition: all 0.3s;
-}
-
-.page-btn:hover:not(:disabled) {
-    border-color: #005da6;
-    color: #005da6;
-}
-
-.page-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.page-info {
-    font-size: 14px;
-    color: #666;
-}
-
-/* 响应式 */
-@media (max-width: 1200px) {
-    .models-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 992px) {
-    .models-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .model-list-item {
-        flex-direction: column;
-    }
-
-    .model-thumbnail {
-        width: 100%;
-        height: 180px;
-    }
-
-    .model-actions {
-        flex-direction: row;
-    }
-}
-
-@media (max-width: 768px) {
-    .header-content h1 {
-        font-size: 28px;
-    }
-
-    .models-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .filter-tags {
-        gap: 8px;
-    }
-
-    .tag-btn {
-        font-size: 13px;
-        padding: 6px 12px;
-    }
-}
-
-/* 详情弹窗样式 */
+/* 弹窗样式 */
 .dialog-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    z-index: 9999;
+    padding: 20px;
 }
 
 .dialog-content {
     background: #fff;
     border-radius: 12px;
-    max-width: 700px;
-    width: 90%;
+    max-width: 800px;
+    width: 100%;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
-    animation: slideUp 0.3s ease-out;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    padding: 30px;
 }
 
 .dialog-close {
@@ -897,63 +794,45 @@ export default {
     width: 32px;
     height: 32px;
     border: none;
-    background: rgba(0, 0, 0, 0.1);
+    background: #f5f5f5;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
-    font-size: 18px;
     transition: all 0.3s;
-    z-index: 1;
 }
 
 .dialog-close:hover {
-    background: rgba(0, 0, 0, 0.2);
-    color: #333;
-    transform: rotate(90deg);
+    background: #e0e0e0;
 }
 
 .dialog-header {
-    position: relative;
+    display: flex;
+    gap: 20px;
     margin-bottom: 25px;
 }
 
 .dialog-image {
-    width: 100%;
-    height: 250px;
+    width: 200px;
+    height: 140px;
     object-fit: cover;
-    border-radius: 12px 12px 0 0;
-}
-
-.dialog-header-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    color: #fff;
+    border-radius: 8px;
 }
 
 .dialog-header-info h2 {
-    font-size: 24px;
-    margin-bottom: 8px;
-    font-weight: 600;
+    font-size: 22px;
+    color: #1a237e;
+    margin: 0 0 8px 0;
 }
 
 .dialog-category {
-    display: inline-block;
-    background: rgba(0, 93, 166, 0.9);
-    color: #fff;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 13px;
+    font-size: 14px;
+    color: #666;
 }
 
 .dialog-body {
-    padding: 0 25px 25px;
+    margin-bottom: 25px;
 }
 
 .dialog-section {
@@ -963,14 +842,14 @@ export default {
 .dialog-section h3 {
     font-size: 16px;
     color: #1a237e;
-    margin-bottom: 10px;
-    font-weight: 600;
+    margin: 0 0 10px 0;
 }
 
 .dialog-section p {
     font-size: 14px;
     color: #666;
-    line-height: 1.8;
+    line-height: 1.6;
+    margin: 0;
 }
 
 .dialog-info-grid {
@@ -978,113 +857,88 @@ export default {
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     margin-bottom: 20px;
-    padding: 15px;
-    background: #f5f5f5;
-    border-radius: 8px;
 }
 
 .info-item {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
+    font-size: 14px;
     color: #666;
 }
 
 .info-item i {
-    color: #005da6;
-}
-
-.info-item .label {
-    font-weight: 500;
-    color: #333;
+    color: #1a237e;
 }
 
 .dialog-tags {
     display: flex;
-    flex-wrap: wrap;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 .dialog-tag {
-    padding: 6px 14px;
-    background: #e8f4f8;
-    color: #005da6;
-    border-radius: 20px;
+    padding: 6px 12px;
+    background: #f5f5f5;
+    border-radius: 16px;
     font-size: 13px;
-    font-weight: 500;
+    color: #666;
 }
 
 .dialog-footer {
     display: flex;
+    gap: 10px;
     justify-content: flex-end;
-    gap: 12px;
-    padding: 20px 25px;
-    border-top: 1px solid #f0f0f0;
 }
 
-.dialog-footer .btn-primary {
-    padding: 10px 25px;
-    background: linear-gradient(135deg, #005da6 0%, #0079b8 100%);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s;
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .standard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.dialog-footer .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 93, 166, 0.4);
-}
-
-.dialog-footer .btn-secondary {
-    padding: 10px 25px;
-    background: #f5f5f5;
-    color: #666;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s;
-}
-
-.dialog-footer .btn-secondary:hover {
-    background: #e0e0e0;
-    color: #333;
-}
-
-/* 弹窗响应式 */
 @media (max-width: 768px) {
-    .dialog-content {
-        width: 95%;
-        max-height: 95vh;
-    }
-
-    .dialog-image {
-        height: 180px;
-    }
-
-    .dialog-header-info h2 {
-        font-size: 20px;
-    }
-
-    .dialog-info-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .dialog-footer {
+    .search-box {
         flex-direction: column;
     }
-
-    .dialog-footer button {
+    
+    .search-btn {
         width: 100%;
+    }
+    
+    .standard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .model-list-item {
+        flex-direction: column;
+    }
+    
+    .model-thumbnail {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+@media (max-width: 640px) {
+    .main-content {
+        padding: 20px 0;
+    }
+    
+    .filter-tags {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .dialog-info-grid {
+        grid-template-columns: 1fr;
     }
 }
 </style>

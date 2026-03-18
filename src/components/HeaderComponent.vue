@@ -29,7 +29,7 @@ const currentItem = ref('home')
 const navItems = [
     { name: '首页', path: 'home', to: '/' },
     { name: '综合新闻', path: 'news', to: '/news' },
-    { name: '数据资源', path: 'data', to: '/data' },
+    { name: '数据资源', path: 'data-resources', to: '/data-resources' },
     { name: '专题数据', path: 'topic', to: '/topic-data' },
     { name: '模型资源', path: 'model', to: '/model' },
     { name: '科普专栏', path: 'popularization', to: '/popularization' },

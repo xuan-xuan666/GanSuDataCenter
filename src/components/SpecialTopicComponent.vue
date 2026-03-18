@@ -3,7 +3,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>专题数据</h2>
-                <a href="javascript:;" class="more-link">更多 &gt;</a>
+                <a href="/topic-data" class="more-link">更多 &gt;</a>
             </div>
             <div class="topic-grid">
                 <div class="topic-item" v-for="(topic, index) in specialTopics" :key="index">
@@ -27,8 +27,22 @@ const specialTopics = [
 </script>
 
 <style scoped>
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.section-title h2 {
+    font-size: 24px;
+    color: #1a237e;
+    font-weight: 600;
+}
 .special-topic {
-    padding: 60px 0;
+    padding: 60px 60px;
     background: #fff;
 }
 

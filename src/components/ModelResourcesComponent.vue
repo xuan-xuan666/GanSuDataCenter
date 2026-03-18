@@ -3,7 +3,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>模型资源</h2>
-                <a href="javascript:;" class="more-link">更多 &gt;</a>
+                <a href="/model" class="more-link">更多 &gt;</a>
             </div>
             <div class="models-list">
                 <div class="model-item" v-for="(model, index) in modelResources" :key="index">
@@ -27,8 +27,22 @@ const modelResources = [
 </script>
 
 <style scoped>
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.section-title h2 {
+    font-size: 24px;
+    color: #1a237e;
+    font-weight: 600;
+}
 .model-resources {
-    padding: 60px 0;
+    padding: 60px 60px;
     background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
 }
 

@@ -1,12 +1,6 @@
 <template>
     <div class="science-popularization-view">
-        
         <div class="container">
-            <div class="page-title">
-                <h2>科普专栏</h2>
-                <p>探索科学数据与文旅融合的奥秘</p>
-            </div>
-            
             <div class="main-content">
                 <div class="sidebar">
                     <div class="sidebar-section">

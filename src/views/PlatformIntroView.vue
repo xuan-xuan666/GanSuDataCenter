@@ -1,16 +1,5 @@
 <template>
     <div class="platform-intro-page">
-        <!-- 平台介绍横幅 -->
-        <section class="platform-banner">
-            <div class="container">
-                <div class="banner-content">
-                    <h1>甘肃文旅融合科学数据中心</h1>
-                    <p class="banner-subtitle">Gansu Cultural Tourism Integration Science Data Center</p>
-                    <p class="banner-description">整合文旅资源 · 服务科技创新 · 促进融合发展</p>
-                </div>
-            </div>
-        </section>
-
         <!-- 中心简介 -->
         <section class="center-intro">
             <div class="container">

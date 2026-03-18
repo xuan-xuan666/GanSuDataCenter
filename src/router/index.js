@@ -12,6 +12,7 @@ import NewsDetailView from '../views/NewsDetailView.vue'
 import ModelResourcesView from '../views/ModelResourcesView.vue'
 import TopicDataView from '../views/TopicDataView.vue'
 import TopicDetailView from '../views/TopicDetailView.vue'
+import DataResourcesView from '../views/DataResourcesView.vue'
 
 const routes = [
     {
@@ -78,6 +79,11 @@ const routes = [
         path: '/topic-data/:id',
         name: 'topic-detail',
         component: TopicDetailView
+    },
+    {
+        path: '/data-resources',
+        name: 'data-resources',
+        component: DataResourcesView
     }
 ]
 

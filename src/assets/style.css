@@ -50,6 +50,7 @@ ul {
 .more-link {
     color: #005da6;
     font-weight: 500;
+    margin-right: auto;
 }
 
 @media (max-width: 1200px) {

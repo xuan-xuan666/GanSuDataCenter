@@ -7,7 +7,7 @@
         <SpecialTopicComponent />
         <ModelResourcesComponent />
         <SciencePopularizationComponent />
-        <PlatformIntroComponent />
+        <!-- <PlatformIntroComponent /> -->
     </div>
 </template>
 
@@ -19,7 +19,7 @@ import DataResourcesComponent from '../components/DataResourcesComponent.vue'
 import SpecialTopicComponent from '../components/SpecialTopicComponent.vue'
 import ModelResourcesComponent from '../components/ModelResourcesComponent.vue'
 import SciencePopularizationComponent from '../components/SciencePopularizationComponent.vue'
-import PlatformIntroComponent from '../components/PlatformIntroComponent.vue'
+//import PlatformIntroComponent from '../components/PlatformIntroComponent.vue'
 </script>
 
 <style scoped>
