@@ -1,89 +1,73 @@
 <template>
     <header class="header">
-        <div class="header-top">
-            <div class="container">
+        <div class="container">
+            <div class="header-content">
                 <div class="logo">
                     <div class="logo-icon"></div>
                     <h1>甘肃文旅融合科学数据中心</h1>
                 </div>
-                <div class="header-links">
-                    <a href="javascript:;">登录</a>
-                    <a href="javascript:;">注册</a>
-                    <a href="javascript:;">中文</a>
-                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li v-for="item in navItems" :key="item.path">
+                            <router-link :to="item.to" :class="{ active: currentItem === item.path }">{{ item.name }}</router-link>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
-        <nav class="main-nav">
-            <div class="container">
-                <ul>
-                    <li v-for="item in navItems" :key="item.path">
-                        <a :href="item.href" :class="{ active: currentItem === item.path }" @click="handleNavClick(item)">{{ item.name }}</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
     </header>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
-const currentItem = ref('首页')
+const router = useRouter()
+const route = useRoute()
+const currentItem = ref('home')
+
 const navItems = [
-    { name: '首页', path: 'home', href: 'javascript:;' },
-    { name: '综合新闻', path: 'news', href: 'javascript:;' },
-    { name: '数据资源', path: 'data', href: '#data-source' },
-    { name: '专题数据', path: 'topic', href: 'javascript:;' },
-    { name: '模型资源', path: 'model', href: 'javascript:;' },
-    { name: '科普专栏', path: 'popularization', href: 'javascript:;' },
-    { name: '平台介绍', path: 'intro', href: 'javascript:;' }
+    { name: '首页', path: 'home', to: '/' },
+    { name: '综合新闻', path: 'news', to: '/news' },
+    { name: '数据资源', path: 'data', to: '/data' },
+    { name: '专题数据', path: 'topic', to: '/topic-data' },
+    { name: '模型资源', path: 'model', to: '/model' },
+    { name: '科普专栏', path: 'popularization', to: '/popularization' },
+    { name: '平台介绍', path: 'platform-intro', to: '/platform-intro' }
 ]
 
-const handleNavClick = (item) => {
-    if (item.href && item.href.startsWith('#')) {
-        const targetElement = document.querySelector(item.href)
-        if (targetElement) {
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset
-            const startPosition = window.pageYOffset
-            const distance = targetPosition - startPosition
-            const duration = 800
-            let startTime = null
-
-            const easeInOutQuad = (t) => {
-                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
-            }
-
-            const scroll = (currentTime) => {
-                if (!startTime) startTime = currentTime
-                const elapsed = currentTime - startTime
-                const progress = Math.min(elapsed / duration, 1)
-                const ease = easeInOutQuad(progress)
-
-                window.scrollTo(0, startPosition + distance * ease)
-
-                if (progress < 1) {
-                    requestAnimationFrame(scroll)
-                }
-            }
-
-            requestAnimationFrame(scroll)
-        }
+// 根据当前路由更新激活的导航项
+const updateCurrentItem = () => {
+    const currentPath = route.path
+    const item = navItems.find(item => item.to === currentPath)
+    if (item) {
+        currentItem.value = item.path
+    } else {
+        currentItem.value = 'home'
     }
 }
+
+// 监听路由变化
+watch(() => route.path, updateCurrentItem)
+
+// 初始化时更新一次
+updateCurrentItem()
 </script>
 
 <style scoped>
 .header {
     background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    padding: 15px 0;
 }
 
-.header-top {
-    background: rgba(0,0,0,0.2);
-    padding: 10px 0;
+.header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.header-top .container {
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -92,7 +76,6 @@ const handleNavClick = (item) => {
 .logo {
     display: flex;
     align-items: center;
-    margin-left: 20px;
     color: #fff;
 }
 
@@ -107,35 +90,15 @@ const handleNavClick = (item) => {
 .logo h1 {
     font-size: 20px;
     font-weight: 600;
-}
-
-.header-links {
-    display: flex;
-    gap: 20px;
-}
-
-.header-links a {
-    color: #fff;
-    font-size: 14px;
-}
-
-.header-links a:hover {
-    color: #4fc3f7;
-}
-
-.main-nav {
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.main-nav .container {
-    display: flex;
-    justify-content: center;
+    white-space: nowrap;
 }
 
 .main-nav ul {
     display: flex;
     gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .main-nav li {
@@ -144,15 +107,44 @@ const handleNavClick = (item) => {
 
 .main-nav li a {
     display: block;
-    padding: 15px 25px;
-    color: #333;
+    padding: 10px 20px;
+    color: #fff;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 4px;
 }
 
-.main-nav li a:hover,
+.main-nav li a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #4fc3f7;
+}
+
 .main-nav li a.active {
-    background: linear-gradient(135deg, #005da6 0%, #0079b8 100%);
+    background: linear-gradient(135deg, #4fc3f7 0%, #00bcd4 100%);
     color: #fff;
+    box-shadow: 0 2px 8px rgba(79, 195, 247, 0.3);
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .logo {
+        justify-content: center;
+    }
+    
+    .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .main-nav li a {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
 }
 </style>

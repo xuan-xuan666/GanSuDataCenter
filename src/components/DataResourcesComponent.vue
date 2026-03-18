@@ -12,7 +12,8 @@
                     </div>
                     <h3>{{ resource.title }}</h3>
                     <p>{{ resource.description }}</p>
-                    <a :href="resource.href" class="resource-link">进入 &gt;</a>
+                    <a v-if="resource.href && resource.href !== 'javascript:;'" @click="handleNavigation(resource.href)" class="resource-link">进入 &gt;</a>
+                    <a v-else :href="resource.href" class="resource-link">进入 &gt;</a>
                 </div>
             </div>
         </div>
@@ -20,13 +21,17 @@
 </template>
 
 <script setup>
+const handleNavigation = (path) => {
+    window.location.href = path
+}
+
 const dataResources = [
-    { title: '旅游资源', description: '甘肃地图+地标图标', icon: 'fas fa-map', href: 'javascript:;' },
-    { title: '生态监测 ', description: '动态气象云图图标', icon: 'fas fa-users', href: 'javascript:;' },
-    { title: '非遗资源', description: '剪纸/皮影动态图标', icon: 'fas fa-tree', href: 'javascript:;' },
+    { title: '旅游资源', description: '甘肃地图 + 地标图标', icon: 'fas fa-map', href: '/tourism' },
+    { title: '生态监测', description: '动态气象云图图标', icon: 'fas fa-cloud-sun', href: '/eco-monitoring' },
+    { title: '非遗资源', description: '剪纸/皮影动态图标', icon: 'fas fa-film', href: '/ich' },
     { title: '专题数据', description: '多图层叠加图标', icon: 'fas fa-landmark', href: 'javascript:;' },
-    { title: '文创数据', description: '三维文物旋转图标', icon: 'fas fa-landmark', href: 'javascript:;' },
-    { title: '特色数据', description: '飞天舞蹈剪影图标', icon: 'fas fa-landmark', href: 'javascript:;' },
+    { title: '文创数据', description: '三维文物旋转图标', icon: 'fas fa-landmark', href: '/cultural-creativity' },
+    { title: '特色数据', description: '飞天舞蹈剪影图标', icon: 'fas fa-landmark', href: '/dunhuang-dance' },
 ]
 </script>
 

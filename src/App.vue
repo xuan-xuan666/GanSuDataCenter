@@ -1,28 +1,15 @@
 <template>
     <div id="app">
         <HeaderComponent />
-        <CarouselComponent />
-        <DataOverviewComponent />
-        <NewsSectionComponent />
-        <DataResourcesComponent />
-        <SpecialTopicComponent />
-        <ModelResourcesComponent />
-        <SciencePopularizationComponent />
-        <PlatformIntroComponent />
+        <main class="main-content">
+            <router-view />
+        </main>
         <FooterComponent />
     </div>
 </template>
 
 <script setup>
 import HeaderComponent from './components/HeaderComponent.vue'
-import CarouselComponent from './components/CarouselComponent.vue'
-import DataOverviewComponent from './components/DataOverviewComponent.vue'
-import NewsSectionComponent from './components/NewsSectionComponent.vue'
-import DataResourcesComponent from './components/DataResourcesComponent.vue'
-import SpecialTopicComponent from './components/SpecialTopicComponent.vue'
-import ModelResourcesComponent from './components/ModelResourcesComponent.vue'
-import SciencePopularizationComponent from './components/SciencePopularizationComponent.vue'
-import PlatformIntroComponent from './components/PlatformIntroComponent.vue'
 import FooterComponent from './components/FooterComponent.vue'
 </script>
 
@@ -56,5 +43,11 @@ ul {
 
 #app {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
 }
 </style>
