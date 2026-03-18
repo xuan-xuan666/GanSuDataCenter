@@ -1,22 +1,40 @@
 <template>
     <div class="platform-intro-page">
+        <!-- 顶部导航横幅 -->
+        <div class="top-nav">
+            <div class="container">
+                <div class="nav-content">
+                    <span class="nav-item">关于我们</span>
+                    <span class="nav-divider">|</span>
+                    <a href="#contact" class="nav-item">联系我们</a>
+                </div>
+            </div>
+        </div>
+
         <!-- 中心简介 -->
         <section class="center-intro">
             <div class="container">
-                <div class="section-title">
-                    <h2>中心简介</h2>
+                <div class="intro-header">
+                    <h1 class="intro-title">甘肃文旅融合科学数据中心</h1>
+                    <p class="intro-subtitle">Gansu Cultural Tourism Integration Science Data Center</p>
                 </div>
                 <div class="intro-content">
                     <div class="intro-text">
-                        <p>甘肃文旅融合科学数据中心是甘肃省重点建设的科学数据管理与共享服务平台，致力于整合全省文旅资源，提供全面的数据服务和分析支持。</p>
+                        <p class="intro-lead">甘肃文旅融合科学数据中心是甘肃省重点建设的科学数据管理与共享服务平台，致力于整合全省文旅资源，提供全面的数据服务和分析支持。</p>
                         <p>中心依托先进的大数据技术和专业的研究团队，构建开放、高效、安全的科学数据管理体系，为政府决策、科学研究、企业发展和公众服务提供优质的数据支撑。</p>
                         <p>通过整合多源异构数据资源，建立标准化的数据管理流程和共享机制，中心促进文旅与科学的深度融合，推动数据资源的创新应用和价值转化。</p>
                     </div>
-                    <div class="intro-stats">
-                        <div class="stat-item" v-for="(stat, index) in platformStats" :key="index">
-                            <div class="stat-number">{{ stat.number }}</div>
-                            <div class="stat-label">{{ stat.label }}</div>
-                        </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 统计数据 -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item" v-for="(stat, index) in platformStats" :key="index">
+                        <div class="stat-number">{{ stat.number }}</div>
+                        <div class="stat-label">{{ stat.label }}</div>
                     </div>
                 </div>
             </div>
@@ -25,16 +43,15 @@
         <!-- 功能定位 -->
         <section class="function-positioning">
             <div class="container">
-                <div class="section-title">
-                    <h2>功能定位</h2>
+                <div class="section-header">
+                    <h2 class="section-title">功能定位</h2>
+                    <div class="title-line"></div>
                 </div>
                 <div class="positioning-grid">
                     <div class="positioning-card" v-for="(item, index) in positioningItems" :key="index">
-                        <div class="positioning-icon">
-                            <span class="icon-number">{{ index + 1 }}</span>
-                        </div>
-                        <h3>{{ item.title }}</h3>
-                        <p>{{ item.description }}</p>
+                        <div class="card-number">{{ String(index + 1).padStart(2, '0') }}</div>
+                        <h3 class="card-title">{{ item.title }}</h3>
+                        <p class="card-description">{{ item.description }}</p>
                     </div>
                 </div>
             </div>
@@ -43,8 +60,9 @@
         <!-- 数据资源 -->
         <section class="data-resources-section">
             <div class="container">
-                <div class="section-title">
-                    <h2>数据资源</h2>
+                <div class="section-header">
+                    <h2 class="section-title">数据资源</h2>
+                    <div class="title-line"></div>
                 </div>
                 <div class="resources-grid">
                     <div class="resource-card" v-for="(resource, index) in dataResources" :key="index">
@@ -55,8 +73,8 @@
                                 <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
                             </svg>
                         </div>
-                        <h3>{{ resource.title }}</h3>
-                        <p>{{ resource.description }}</p>
+                        <h3 class="resource-title">{{ resource.title }}</h3>
+                        <p class="resource-description">{{ resource.description }}</p>
                     </div>
                 </div>
             </div>
@@ -65,28 +83,28 @@
         <!-- 服务内容 -->
         <section class="service-content-section">
             <div class="container">
-                <div class="section-title">
-                    <h2>服务内容</h2>
+                <div class="section-header">
+                    <h2 class="section-title">服务内容</h2>
+                    <div class="title-line"></div>
                 </div>
                 <div class="service-list">
                     <div class="service-item" v-for="(service, index) in serviceItems" :key="index">
                         <div class="service-number">{{ String(index + 1).padStart(2, '0') }}</div>
                         <div class="service-content">
-                            <h3>{{ service.title }}</h3>
-                            <p>{{ service.description }}</p>
+                            <h3 class="service-title">{{ service.title }}</h3>
+                            <p class="service-description">{{ service.description }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
-
         <!-- 联系方式 -->
         <section class="contact-section" id="contact">
             <div class="container">
-                <div class="section-title">
-                    <h2>联系我们</h2>
+                <div class="section-header">
+                    <h2 class="section-title">联系我们</h2>
+                    <div class="title-line"></div>
                 </div>
                 <div class="contact-content">
                     <div class="contact-info" v-for="(info, index) in contactInfo" :key="index">
@@ -96,6 +114,16 @@
                 </div>
             </div>
         </section>
+
+        <!-- 页脚 -->
+        <footer class="page-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="copyright">© 2026 甘肃文旅融合科学数据中心 版权所有</p>
+                    <p class="technical-support">技术支持：甘肃文旅数据中心技术团队</p>
+                </div>
+            </div>
+        </footer>
     </div>
 </template>
 
@@ -182,95 +210,85 @@ const contactInfo = ref([
 <style scoped>
 .platform-intro-page {
     min-height: 100vh;
-    background: #f5f5f5;
+    background: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
 }
 
-/* 平台横幅 */
-.platform-banner {
-    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
-    padding: 80px 0;
-    text-align: center;
-    color: #fff;
-}
-
-.banner-content h1 {
-    font-size: 42px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-}
-
-.banner-subtitle {
-    font-size: 18px;
-    opacity: 0.9;
-    margin-bottom: 20px;
-    font-weight: 300;
-}
-
-.banner-description {
-    font-size: 16px;
-    opacity: 0.85;
-    max-width: 800px;
+.container {
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* 通用 section 样式 */
-.center-intro,
-.function-positioning,
-.data-resources-section,
-.service-content-section,
-.contact-section {
-    padding: 70px 0;
+/* 顶部导航 */
+.top-nav {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 12px 0;
 }
 
-.center-intro:nth-child(even) {
+.nav-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-item {
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-item:hover {
+    color: #1a237e;
+}
+
+.nav-divider {
+    color: #ccc;
+}
+
+/* 中心简介 */
+.center-intro {
+    padding: 80px 0 60px;
     background: #fff;
 }
 
-.function-positioning,
-.data-resources-section,
-.service-content-section,
-.contact-section {
-    background: #f5f5f5;
-}
-
-/* 标题样式 */
-.section-title {
+.intro-header {
     text-align: center;
     margin-bottom: 50px;
 }
 
-.section-title h2 {
-    font-size: 32px;
+.intro-title {
+    font-size: 36px;
+    font-weight: 600;
     color: #1a237e;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 15px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
 }
 
-.section-title h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(135deg, #4fc3f7 0%, #00bcd4 100%);
-    border-radius: 2px;
+.intro-subtitle {
+    font-size: 16px;
+    color: #666;
+    font-weight: 400;
 }
 
-/* 中心简介 */
 .intro-content {
-    display: flex;
-    gap: 60px;
-    align-items: flex-start;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .intro-text {
-    flex: 1;
     line-height: 2;
     color: #333;
+}
+
+.intro-lead {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1a237e;
+    margin-bottom: 25px;
+    line-height: 1.8;
 }
 
 .intro-text p {
@@ -279,32 +297,73 @@ const contactInfo = ref([
     text-align: justify;
 }
 
-.intro-stats {
+/* 统计数据 */
+.stats-section {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+}
+
+.stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    min-width: 300px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
 }
 
 .stat-item {
     text-align: center;
-    padding: 25px 20px;
-    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
-    border-radius: 10px;
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, background 0.3s;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .stat-number {
-    font-size: 38px;
-    font-weight: 600;
+    font-size: 48px;
+    font-weight: 700;
     color: #4fc3f7;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
 }
 
 .stat-label {
-    font-size: 15px;
-    opacity: 0.9;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+}
+
+/* 通用 section 样式 */
+.function-positioning,
+.data-resources-section,
+.service-content-section,
+.contact-section {
+    padding: 70px 0;
+    background: #f8f9fa;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a237e;
+    margin-bottom: 15px;
+}
+
+.title-line {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, #4fc3f7 0%, #00bcd4 100%);
+    margin: 0 auto;
+    border-radius: 2px;
 }
 
 /* 功能定位 */
@@ -316,45 +375,40 @@ const contactInfo = ref([
 
 .positioning-card {
     background: #fff;
-    padding: 30px 25px;
-    border-radius: 10px;
+    padding: 35px 25px;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s;
+    border: 1px solid #e8e8e8;
 }
 
 .positioning-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    border-color: #4fc3f7;
 }
 
-.positioning-icon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 20px;
-    background: linear-gradient(135deg, #4fc3f7 0%, #00bcd4 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.card-number {
+    font-size: 42px;
+    font-weight: 700;
+    color: rgba(79, 195, 247, 0.2);
+    margin-bottom: 15px;
+    line-height: 1;
 }
 
-.icon-number {
-    font-size: 28px;
-    font-weight: 600;
-    color: #fff;
-}
-
-.positioning-card h3 {
+.card-title {
     font-size: 18px;
+    font-weight: 600;
     color: #1a237e;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
-.positioning-card p {
+.card-description {
     font-size: 14px;
     color: #666;
     line-height: 1.8;
+    text-align: justify;
 }
 
 /* 数据资源 */
@@ -366,21 +420,24 @@ const contactInfo = ref([
 
 .resource-card {
     background: #fff;
-    padding: 30px 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 35px 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     transition: all 0.3s;
+    border: 1px solid #e8e8e8;
+    text-align: center;
 }
 
 .resource-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    border-color: #4fc3f7;
 }
 
 .resource-icon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 20px;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
     color: #1a237e;
 }
 
@@ -389,13 +446,14 @@ const contactInfo = ref([
     height: 100%;
 }
 
-.resource-card h3 {
+.resource-title {
     font-size: 17px;
+    font-weight: 600;
     color: #1a237e;
     margin-bottom: 12px;
 }
 
-.resource-card p {
+.resource-description {
     font-size: 14px;
     color: #666;
     line-height: 1.8;
@@ -406,53 +464,72 @@ const contactInfo = ref([
     display: flex;
     flex-direction: column;
     gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .service-item {
     display: flex;
     gap: 25px;
     background: #fff;
-    padding: 25px 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 30px 35px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     transition: all 0.3s;
+    border: 1px solid #e8e8e8;
+    align-items: flex-start;
 }
 
 .service-item:hover {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: #4fc3f7;
+    transform: translateX(5px);
 }
 
 .service-number {
-    font-size: 32px;
-    font-weight: 600;
-    color: #4fc3f7;
-    min-width: 50px;
+    font-size: 36px;
+    font-weight: 700;
+    color: rgba(79, 195, 247, 0.3);
+    min-width: 60px;
+    line-height: 1;
 }
 
-.service-content h3 {
+.service-content {
+    flex: 1;
+}
+
+.service-title {
     font-size: 18px;
+    font-weight: 600;
     color: #1a237e;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
-.service-content p {
+.service-description {
     font-size: 15px;
     color: #666;
     line-height: 1.8;
+    text-align: justify;
 }
 
 /* 联系方式 */
-.contact-content {
+.contact-section {
     background: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.contact-content {
+    background: #f8f9fa;
+    padding: 45px 50px;
+    border-radius: 12px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .contact-info {
     display: flex;
-    padding: 20px 0;
+    padding: 22px 0;
     border-bottom: 1px solid #e0e0e0;
+    align-items: baseline;
 }
 
 .contact-info:last-child {
@@ -460,56 +537,100 @@ const contactInfo = ref([
 }
 
 .contact-label {
-    width: 120px;
+    width: 130px;
     font-size: 15px;
     color: #666;
     font-weight: 500;
+    flex-shrink: 0;
 }
 
 .contact-value {
     flex: 1;
     font-size: 15px;
     color: #333;
+    font-weight: 400;
+}
+
+/* 页脚 */
+.page-footer {
+    background: #1a237e;
+    padding: 30px 0;
+    border-top: 3px solid #4fc3f7;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.copyright {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 8px;
+}
+
+.technical-support {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* 响应式设计 */
 @media (max-width: 1200px) {
+    .stats-grid,
     .positioning-grid,
     .resources-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .stat-number {
+        font-size: 40px;
+    }
 }
 
 @media (max-width: 768px) {
-    .banner-content h1 {
-        font-size: 28px;
+    .intro-title {
+        font-size: 26px;
     }
     
-    .banner-subtitle {
+    .intro-subtitle {
         font-size: 14px;
     }
     
-    .intro-content {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
+    .stats-grid,
     .positioning-grid,
     .resources-grid {
         grid-template-columns: 1fr;
     }
     
-    .section-title h2 {
+    .stat-number {
+        font-size: 36px;
+    }
+    
+    .section-title {
         font-size: 26px;
     }
     
     .service-item {
         flex-direction: column;
         gap: 15px;
+        padding: 25px;
     }
     
     .service-number {
         min-width: auto;
+        font-size: 28px;
+    }
+    
+    .contact-content {
+        padding: 30px 25px;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .contact-label {
+        width: auto;
     }
 }
 </style>
